@@ -14,6 +14,7 @@
 		ECBBA89B2AEAE6F100F6E478 /* ArtBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ECBBA8992AEAE6F100F6E478 /* ArtBook.xcdatamodeld */; };
 		ECBBA89D2AEAE6F200F6E478 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECBBA89C2AEAE6F200F6E478 /* Assets.xcassets */; };
 		ECBBA8A02AEAE6F200F6E478 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECBBA89E2AEAE6F200F6E478 /* LaunchScreen.storyboard */; };
+		ECBBA8A82AEAED0900F6E478 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBBA8A72AEAED0900F6E478 /* DetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		ECBBA89C2AEAE6F200F6E478 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECBBA89F2AEAE6F200F6E478 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ECBBA8A12AEAE6F200F6E478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECBBA8A72AEAED0900F6E478 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				ECBBA89E2AEAE6F200F6E478 /* LaunchScreen.storyboard */,
 				ECBBA8A12AEAE6F200F6E478 /* Info.plist */,
 				ECBBA8992AEAE6F100F6E478 /* ArtBook.xcdatamodeld */,
+				ECBBA8A72AEAED0900F6E478 /* DetailVC.swift */,
 			);
 			path = ArtBook;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECBBA8A82AEAED0900F6E478 /* DetailVC.swift in Sources */,
 				ECBBA8952AEAE6F100F6E478 /* ViewController.swift in Sources */,
 				ECBBA8912AEAE6F100F6E478 /* AppDelegate.swift in Sources */,
 				ECBBA89B2AEAE6F100F6E478 /* ArtBook.xcdatamodeld in Sources */,
