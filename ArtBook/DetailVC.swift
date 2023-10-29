@@ -41,10 +41,13 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
         
         do {
             try context.save()
-            print("success")
+            self.navigationController?.popViewController(animated: true)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
         } catch {
             print(error,"bir hata var")
         }
+        
+        
         
         
     }

@@ -21,7 +21,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     var items = [Painting]()
     
-    func getData(){
+    @objc func getData(){
+        
+        items.removeAll(keepingCapacity: true)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -70,6 +72,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(navigateToDetailVC))
         getData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(rawValue:"newData"), object:nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
