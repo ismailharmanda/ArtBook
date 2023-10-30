@@ -71,8 +71,10 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
                 fetchRequest.predicate = NSPredicate(format: "id = %@", safeSelectedPainting.id! as CVarArg)
                let result = try context.fetch(fetchRequest)
                 if let imageData = result[0].image {
-                    
                     imageView.image = UIImage(data: imageData)
+                    nameText.text = result[0].name
+                    artistTest.text = result[0].artist
+                    yearText.text = String(result[0].year)
                 }
                 
                 
@@ -82,6 +84,10 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
             }
             
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        selectedPainting = nil
     }
     
     @objc func hideKeyboard(){

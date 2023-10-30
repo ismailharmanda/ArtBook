@@ -49,7 +49,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+        let cell = UITableViewCell()
         var content = cell.defaultContentConfiguration()
         
         content.text = items[indexPath.row].name
@@ -88,9 +88,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func navigateToDetailVC (){
+        selectedPainting = nil
         performSegue(withIdentifier: "toDetailVC", sender: nil)
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<Painting>(entityName: "Painting")
+            let predicate = NSPredicate(format: "id = %@", items[indexPath.row].id! as CVarArg)
+            fetchRequest.predicate = predicate
+            print("wdsfrws")
+            do {
+                 let selectedPainting = try context.fetch(fetchRequest)[0]
+                context.delete(selectedPainting)
+                items.remove(at: indexPath.row)
+                self.selectedPainting = nil
+                try context.save()
+                
+                
+            }catch{
+                print(error)
+            }
+            self.tableView.reloadData()
+        }
+    }
 
 }
 
