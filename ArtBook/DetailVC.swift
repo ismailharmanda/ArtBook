@@ -10,15 +10,15 @@ import CoreData
 
 class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    var test = ""
+    var selectedPainting: Painting?
     
     
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var artistTest: UITextField!
-    
     @IBOutlet weak var yearText: UITextField!
+    
     
     @IBAction func onSave(_ sender: UIButton) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -60,6 +60,12 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
         view.addGestureRecognizer(gestureRecognizer)
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(imageTapRecognizer)
+        
+        if let safeSelectedPainting = selectedPainting{
+//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                let context = appDelegate.persistentContainer.viewContext
+            print(safeSelectedPainting)
+        }
     }
     
     @objc func hideKeyboard(){

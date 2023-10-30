@@ -13,13 +13,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         items.count
     }
     
-    @IBOutlet weak var tableView: UITableView!
     
-    class Painting {
-    var id: UUID?
-    var name: String?
-    }
+    @IBOutlet weak var tableView: UITableView!
+
     var items = [Painting]()
+    
+    var selectedPainting: Painting?
     
     @objc func getData(){
         
@@ -37,10 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             for result in results as! [NSManagedObject] {
                 if let name = result.value(forKey: "name") as? String {
                     if let id = result.value(forKey: "id") as? UUID {
-                        let newPainting = Painting()
-                        newPainting.id = id
-                        newPainting.name = name
-                        items.append(newPainting)
+                        items.append(result as! Painting)
                     }
                 }
                 
@@ -79,13 +75,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewDetailVC" {
-            var destinationVC = segue.destination as! DetailVC
-            destinationVC.test = "deneme"
+        if segue.identifier == "toDetailVC" {
+            let destinationVC = segue.destination as! DetailVC
+            destinationVC.selectedPainting = selectedPainting
+
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPainting = items[indexPath.row]
         performSegue(withIdentifier: "toDetailVC", sender: nil)
     }
     
