@@ -60,11 +60,27 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
         view.addGestureRecognizer(gestureRecognizer)
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(imageTapRecognizer)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Painting>(entityName: "Painting")
+        fetchRequest.returnsObjectsAsFaults = false
         
         if let safeSelectedPainting = selectedPainting{
-//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                let context = appDelegate.persistentContainer.viewContext
-            print(safeSelectedPainting)
+                
+            do{
+                fetchRequest.predicate = NSPredicate(format: "id = %@", safeSelectedPainting.id! as CVarArg)
+               let result = try context.fetch(fetchRequest)
+                if let imageData = result[0].image {
+                    
+                    imageView.image = UIImage(data: imageData)
+                }
+                
+                
+          
+            }catch{
+                print(error)
+            }
+            
         }
     }
     
