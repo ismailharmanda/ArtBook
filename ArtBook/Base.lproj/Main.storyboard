@@ -114,6 +114,7 @@
                         <outlet property="artistTest" destination="0Nf-Qj-l4r" id="FNe-XD-C59"/>
                         <outlet property="imageView" destination="fva-NT-tJi" id="Sxz-kq-jqC"/>
                         <outlet property="nameText" destination="tna-6O-oWr" id="dYK-Hb-qNp"/>
+                        <outlet property="saveButton" destination="nMu-ed-ycf" id="eXK-Op-1hm"/>
                         <outlet property="yearText" destination="ONP-TQ-osr" id="SEd-V3-Wip"/>
                     </connections>
                 </viewController>

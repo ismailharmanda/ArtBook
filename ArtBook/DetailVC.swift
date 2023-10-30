@@ -19,6 +19,7 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
     @IBOutlet weak var artistTest: UITextField!
     @IBOutlet weak var yearText: UITextField!
     
+    @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func onSave(_ sender: UIButton) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -55,6 +56,7 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveButton.isEnabled = false
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         let imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         view.addGestureRecognizer(gestureRecognizer)
@@ -66,6 +68,7 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
         fetchRequest.returnsObjectsAsFaults = false
         
         if let safeSelectedPainting = selectedPainting{
+            saveButton.isHidden = true
                 
             do{
                 fetchRequest.predicate = NSPredicate(format: "id = %@", safeSelectedPainting.id! as CVarArg)
@@ -104,6 +107,7 @@ class DetailVC: UIViewController, UIImagePickerControllerDelegate & UINavigation
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imageView.image = info[.originalImage] as? UIImage
+        self.saveButton.isEnabled = true
         self.dismiss(animated: true)
     }
     
